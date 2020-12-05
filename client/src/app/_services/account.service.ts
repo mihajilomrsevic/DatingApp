@@ -22,19 +22,21 @@ export class AccountService {
        const user = response;
        if (user){
          // smesta trenutnog korisnika u localStorage
-         localStorage.setItem('user', JSON.stringify(user));
-         this.currentUserSource.next(user);
+         // localStorage.setItem('user', JSON.stringify(user));
+         // this.currentUserSource.next(user);
+         this.setCurrentUser(user);
        }
       })
     );
   }
 
   register(model: any){
-    return this.http.post(this.baseUrl+"account/register",model).pipe(
+    return this.http.post(this.baseUrl + "account/register", model).pipe(
       map((user: User) => {
         if(user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          // localStorage.setItem('user', JSON.stringify(user));
+          // this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
         return user;
       })
