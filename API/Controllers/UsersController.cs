@@ -21,7 +21,7 @@ namespace API.Controllers
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
-        private readonly DataContext _context;
+        //private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
         public UsersController(IUserRepository userRepository, IMapper mapper,
@@ -86,8 +86,7 @@ namespace API.Controllers
 
             if (await _userRepository.SaveAllAsync())
             {
-                Console.WriteLine(CreatedAtRoute("GetUser", _mapper.Map<PhotoDto>(photo)));
-                return CreatedAtRoute("GetUser", new { username = user.Id, id=photo.Id }, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
             }
 
 
