@@ -17,14 +17,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error =>{
-        if(error){
-          switch(error.status){
+      catchError(error => {
+        if (error){
+          switch (error.status){
             case 400:
-              if(error.error.errors){
+              if (error.error.errors){
                 const modalStateErrors = [];
-                for(const key in error.error.errors){
-                  if(error.error.errors[key]){
+                for (const key in error.error.errors){
+                  if (error.error.errors[key]){
                     modalStateErrors.push(error.error.errors[key]);
                   }
                 }
@@ -40,7 +40,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/not-found');
               break;
             case 500:
-              const navigationExtras: NavigationExtras = {state: {error: error.error}}
+              const navigationExtras: NavigationExtras = {state: {error: error.error}};
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
