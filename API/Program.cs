@@ -1,16 +1,16 @@
-using System;
-using System.Threading.Tasks;
-using API.Data;
-using API.Entities;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 namespace API
 {
+    using System;
+    using System.Threading.Tasks;
+    using API.Data;
+    using API.Entities;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
+
     public class Program
     {
         public static async Task Main(string[] args)

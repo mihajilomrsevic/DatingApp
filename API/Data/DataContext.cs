@@ -1,24 +1,30 @@
-﻿using API.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace API.Data
+﻿namespace API.Data
 {
+    using API.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+
     public class DataContext : IdentityDbContext<AppUser, AppRole, int, 
         IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, 
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
+        /// <summary>Initializes a new instance of the <see cref="DataContext" /> class.</summary>
+        /// <param name="options">The options to be used by a <see cref="T:Microsoft.EntityFrameworkCore.DbContext">DbContext</see>.</param>
         public DataContext(DbContextOptions options) : base(options)
         {
         }
+
+        /// <summary>Gets or sets the likes.</summary>
+        /// <value>The likes.</value>
         public DbSet<UserLike> Likes { get; set; }
+
+        /// <summary>Gets or sets the messages.</summary>
+        /// <value>The messages.</value>
         public DbSet<Message> Messages { get; set; }
 
+        /// <summary>Configures the schema needed for the identity framework.</summary>
+        /// <param name="builder">The builder being used to construct the model for this context.</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -64,6 +70,5 @@ namespace API.Data
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
         }
-
     }
 }
